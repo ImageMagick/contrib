@@ -532,7 +532,7 @@ STDMETHODIMP MagickImage::get_Item(
 			MagickLib::Image* image;
 			MagickLib::ImageInfo* image_info;
 			MagickLib::ExceptionInfo exception;
-			long id;
+			ssize_t id;
 			LPSTR lpszNext;
 
 			lpszNext = StrChrA( szVal, '.' );
