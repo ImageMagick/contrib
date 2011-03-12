@@ -40,7 +40,7 @@ using namespace ATL;
 #include <asptlb.h>         // Active Server Pages Definitions
 #include <comsvcs.h>
 
-namespace MagickLib
+namespace MagickCore
 {
 #define _VISUALC_
 //#define _MAGICKDLL_
