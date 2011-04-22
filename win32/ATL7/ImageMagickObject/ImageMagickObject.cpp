@@ -817,6 +817,7 @@ HRESULT MagickImage::Perform(
 														ThrowPerformException( exception, MagickCore::ErrorException,
 															"Perform", "Input blob support requires a 1d array (2)" );
 													}
+/*
 													else
 													{
 														LPCWSTR pReturnBuffer = NULL;
@@ -827,6 +828,7 @@ HRESULT MagickImage::Perform(
 															hr = SafeArrayUnaccessData( psax );
 														}
 													}
+*/
 
 													GetXtrnArrayStr( sArg, psax, pvarFirst->bstrVal );
 													hr = AddArgs( sArg );
