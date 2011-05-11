@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "ImageMagickObject Module\0"
             VALUE "FileVersion", "1, 0, 0, 1\0"
             VALUE "InternalName", "ImageMagickObject\0"
-            VALUE "LegalCopyright", "Copyright 1999-2006 ImageMagick Studio LLC\0"
+            VALUE "LegalCopyright", "Copyright 1999-2011 ImageMagick Studio LLC\0"
             VALUE "OriginalFilename", "ImageMagickObject.DLL\0"
             VALUE "ProductName", "ImageMagickObject Module\0"
             VALUE "ProductVersion", "1, 0, 0, 1\0"
