@@ -79,7 +79,7 @@ class CModuelOverrideClass
 
 				// MagickCore::InitializeTracingCriticalSection();
 				// MagickCore::DebugString("DLL Attach -  path: %s\n",m_szAppPath);
-				MagickCore::InitializeMagick( app_path );
+				MagickCore::MagickCoreGenesis( app_path, MagickCore::MagickFalse );
 				MagickCore::RegisterStaticModules();
 				MagickCore::GetExceptionInfo( &exception );
 				(void)MagickCore::GetMagicInfo( (unsigned char*)NULL, 0, &exception );
@@ -91,7 +91,7 @@ class CModuelOverrideClass
 				CT2AEX<MAX_PATH> app_path( m_szAppPath );
 				(void)MagickCore::LogMagickEvent( MagickCore::ResourceEvent, GetMagickModule(),
 					"DLL Detach -  path: %s", app_path );
-				MagickCore::DestroyMagick();
+				MagickCore::MagickCoreTerminus();
 #ifdef _DEBUG
 				if( _CrtDumpMemoryLeaks() )
 				{
@@ -323,7 +323,7 @@ class ATL_NO_VTABLE MagickImage:
 				"FinalConstruct" );
 			AllocateArgs( nDefaultArgumentSize );
 
-			//MagickCore::InitializeMagick(NULL);
+			//MagickCore::MagickCoreGenesis(NULL);
 			return S_OK;
 		}
 
@@ -552,7 +552,7 @@ STDMETHODIMP MagickImage::get_Item(
 				LPSTR text;
 
 				image_info = MagickCore::CloneImageInfo( (MagickCore::ImageInfo*)NULL );
-				text = MagickCore::TranslateText( image_info, image, lpszNext );
+				text = MagickCore::InterpretImageProperties( image_info, image, lpszNext );
 				MagickCore::DestroyImageList( image );
 				MagickCore::DestroyImageInfo( image_info );
 				var = text;
@@ -1075,7 +1075,7 @@ void MagickImage::warninghandler(
 		return;
 	}
 
-	MagickCore::FormatMagickString( warning_text, MaxTextExtent,
+	MagickCore::FormatLocaleString( warning_text, MaxTextExtent,
 		"warning %d: %.1024s%s%.1024s%s%s%.64s%s\n", warning, message,
 		qualifier ? " (" : "", qualifier ? qualifier : "",
 		qualifier ? ")" : "", errno ? " [" : "",
@@ -1097,7 +1097,7 @@ void MagickImage::errorhandler(
 		return;
 	}
 
-	MagickCore::FormatMagickString( error_text, MaxTextExtent,
+	MagickCore::FormatLocaleString( error_text, MaxTextExtent,
 		"error %d: %.1024s%s%.1024s%s%s%.64s%s\n", warning, message,
 		qualifier ? " (" : "", qualifier ? qualifier : "",
 		qualifier ? ")" : "", errno ? " [" : "",
@@ -1119,7 +1119,7 @@ void MagickImage::fatalerrorhandler(
 		return;
 	}
 
-	MagickCore::FormatMagickString( fatalerror_text, MaxTextExtent,
+	MagickCore::FormatLocaleString( fatalerror_text, MaxTextExtent,
 		"fatal error %d: %.1024s%s%.1024s%s%s%.64s%s", error,
 		(message ? message : "ERROR"),
 		qualifier ? " (" : "", qualifier ? qualifier : "", qualifier ? ")" : "",
@@ -1143,7 +1143,7 @@ void MagickImage::CheckAndReportError(
 	{
 		if( error.fullException )
 		{
-			MagickCore::FormatMagickString( message_text, MaxTextExtent,
+			MagickCore::FormatLocaleString( message_text, MaxTextExtent,
 				"%s: 0x%08X: %.1024s", program, error.fullExceptionCode, error.translate_exception() );
 		}
 		else
@@ -1163,7 +1163,7 @@ void MagickImage::CheckAndReportError(
 					break;
 				}
 
-				MagickCore::FormatMagickString( message_text + len, MaxTextExtent - len,
+				MagickCore::FormatLocaleString( message_text + len, MaxTextExtent - len,
 					"%s: %d: %.1024s: %.1024s\r\n",
 					program,
 					exceptionlist->severity,
@@ -1304,7 +1304,7 @@ HRESULT MagickImage::TestHarness(
 	if( FAILED( hr ) )
 	{
 		hr = MAKE_HRESULT( SEVERITY_ERROR, FACILITY_ITF, dwErrorBase + 1001 );
-		MagickCore::FormatMagickString( message_text, MaxTextExtent,
+		MagickCore::FormatLocaleString( message_text, MaxTextExtent,
 			"convert: %d: %.1024s: %.1024s", exception.severity, reason, description );
 		CA2WEX<MaxTextExtent> str( message_text );
 #ifdef _DEBUG
@@ -1338,7 +1338,7 @@ STDMETHODIMP MagickImage::Compare(
 	{
 		EmptyArgs();
 		AddArgs( L"-compare" );
-		hr = Perform( MagickCore::CompareImageCommand, pArrayVar, pVar, &error.exception );
+		hr = Perform( MagickCore::CompareImagesCommand, pArrayVar, pVar, &error.exception );
 	}
 #ifdef ENABLE_FULL_EXCEPTIONS
 	__except( 1 )
