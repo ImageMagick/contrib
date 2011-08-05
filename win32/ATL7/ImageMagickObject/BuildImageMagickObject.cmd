@@ -12,7 +12,7 @@ set PATH_TO_ROOT=..\..\..\..
 if not {%2} == {} (
   set PATH_TO_ROOT=%2
 )
-if not exist %PATH_TO_ROOT%\magick (
+if not exist %PATH_TO_ROOT%\MagickCore (
   (@echo Please supply the path to the root of the ImageMagick directory as the second parameter)
   goto :EOF
 )
@@ -60,7 +60,7 @@ if not exist ImageMagickObject.res (
   goto :EOF
 )
 if {%1}=={debug} (
-  if not exist %PATH_TO_MAGICK%\lib\CORE_DB_magick_.lib (
+  if not exist %PATH_TO_MAGICK%\lib\CORE_DB_MagickCore_.lib (
     (@echo Problem - the lib subdirectory of VisualMagick is missing important libraries)
     goto :EOF
   )
@@ -68,7 +68,7 @@ if {%1}=={debug} (
   mt -manifest ImageMagickObject.dll.manifest -outputresource:ImageMagickObject.dll;2  
 )
 if {%1}=={release} (
-  if not exist %PATH_TO_MAGICK%\lib\CORE_RL_magick_.lib (
+  if not exist %PATH_TO_MAGICK%\lib\CORE_RL_MagickCore_.lib (
     (@echo Problem - the lib subdirectory of VisualMagick is missing important libraries)
     goto :EOF
   )

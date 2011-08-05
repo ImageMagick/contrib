@@ -45,11 +45,11 @@ namespace MagickCore
 #define _VISUALC_
 //#define _MAGICKDLL_
 //#define _MAGICKLIB_
-#include <wand/MagickWand.h>
-#include <magick/semaphore.h>
-#include <magick/nt-base.h>
-#include <magick/log.h>
-#include <magick/hashmap.h>
+#include <MagickWand/MagickWand.h>
+#include <MagickCore/semaphore.h>
+#include <MagickCore/nt-base.h>
+#include <MagickCore/log.h>
+#include <MagickCore/hashmap.h>
 //#undef _MAGICKDLL_
 //#undef _MAGICKLIB_
 #undef inline
