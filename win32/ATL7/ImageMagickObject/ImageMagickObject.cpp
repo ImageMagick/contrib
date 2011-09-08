@@ -552,7 +552,7 @@ STDMETHODIMP MagickImage::get_Item(
 				LPSTR text;
 
 				image_info = MagickCore::CloneImageInfo( (MagickCore::ImageInfo*)NULL );
-				text = MagickCore::InterpretImageProperties( image_info, image, lpszNext );
+				text = MagickCore::InterpretImageProperties( image_info, image, lpszNext, &exception );
 				MagickCore::DestroyImageList( image );
 				MagickCore::DestroyImageInfo( image_info );
 				var = text;
