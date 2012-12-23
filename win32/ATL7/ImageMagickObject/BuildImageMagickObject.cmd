@@ -7,7 +7,7 @@ if {%1} == {} (
   (@echo -)
   goto :EOF
 )
-if not defined DevEnvDir (call vsvars32)
+if not defined DevEnvDir (call vcvarsall.bat x86)
 set PATH_TO_ROOT=..\..\..\..
 if not {%2} == {} (
   set PATH_TO_ROOT=%2
