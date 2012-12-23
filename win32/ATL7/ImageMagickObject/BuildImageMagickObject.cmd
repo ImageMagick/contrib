@@ -49,6 +49,7 @@ if {%1}=={clean} (
   del /Q ImageMagickObject_p.c >nul 2>&1
   del /Q ImageMagickObject_i.c >nul 2>&1
   del /Q dlldata.c >nul 2>&1
+  del /Q ImageMagickObject.dll.manifest >nul 2>&1
   goto :EOF
 )
 if not exist magic.xml (
