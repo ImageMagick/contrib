@@ -1,4 +1,4 @@
-""@echo off
+@echo off
 if {%1} == {} (
   (@echo -)
   (@echo BuildImageMagickObject debug ^| release ^| clean PATH_TO_ROOT NAME_OF_VISUALMAGICK)
