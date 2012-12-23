@@ -1,9 +1,9 @@
-@echo off
+""@echo off
 if {%1} == {} (
   (@echo -)
-  (@echo BuildIt debug ^| release ^| clean PATH_TO_ROOT NAME_OF_VISUALMAGICK)
+  (@echo BuildImageMagickObject debug ^| release ^| clean PATH_TO_ROOT NAME_OF_VISUALMAGICK)
   (@echo -)
-  (@echo  Example: BuildIt release ..\..\..\.. VisualMagick)
+  (@echo  Example: BuildImageMagickObject release ..\..\..\.. VisualMagick)
   (@echo -)
   goto :EOF
 )
