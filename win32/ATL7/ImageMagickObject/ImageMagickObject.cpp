@@ -552,7 +552,7 @@ STDMETHODIMP MagickImage::get_Item(
 				LPSTR text;
 
 				image_info = MagickCore::CloneImageInfo( (MagickCore::ImageInfo*)NULL );
-				text = MagickCore::InterpretImageProperties( image_info, image, lpszNext, &exception );
+				text = MagickCore::InterpretImageProperties( image_info, image, lpszNext );
 				MagickCore::DestroyImageList( image );
 				MagickCore::DestroyImageInfo( image_info );
 				var = text;
@@ -1338,7 +1338,7 @@ STDMETHODIMP MagickImage::Compare(
 	{
 		EmptyArgs();
 		AddArgs( L"-compare" );
-		hr = Perform( MagickCore::CompareImagesCommand, pArrayVar, pVar, &error.exception );
+		hr = Perform( MagickCore::CompareImageCommand, pArrayVar, pVar, &error.exception );
 	}
 #ifdef ENABLE_FULL_EXCEPTIONS
 	__except( 1 )

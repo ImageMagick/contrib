@@ -39,17 +39,18 @@ using namespace ATL;
 
 #include <asptlb.h>         // Active Server Pages Definitions
 #include <comsvcs.h>
+#include <math.h>
 
 namespace MagickCore
 {
 #define _VISUALC_
 //#define _MAGICKDLL_
 //#define _MAGICKLIB_
-#include <MagickWand/MagickWand.h>
-#include <MagickCore/semaphore.h>
-#include <MagickCore/nt-base.h>
-#include <MagickCore/log.h>
-#include <MagickCore/hashmap.h>
+#include <wand/MagickWand.h>
+#include <magick/semaphore.h>
+#include <magick/nt-base.h>
+#include <magick/log.h>
+#include <magick/hashmap.h>
 //#undef _MAGICKDLL_
 //#undef _MAGICKLIB_
 #undef inline
