@@ -420,7 +420,7 @@ void CNtMagickView::DoDisplayImage()
 
       // Extract the pixels from Magick++ image object and convert to a DIB section
 
-      PixelPacket *pPixels = m_Image.getPixels(0,0,m_Image.columns(),m_Image.rows());
+      Quantum *pPixels = m_Image.getPixels(0,0,m_Image.columns(),m_Image.rows());
 
 
 
@@ -456,36 +456,25 @@ void CNtMagickView::DoDisplayImage()
 
       RGBQUAD *pDestPixel = prgbaDIB;
 
-#if QuantumDepth == 8
-
-      // Form of PixelPacket is identical to RGBQUAD when QuantumDepth==8
-
-      memcpy((void*)pDestPixel,(const void*)pPixels,sizeof(PixelPacket)*nPixels);
-
-#elif QuantumDepth == 16
-
       // Transfer pixels, scaling to Quantum
 
       for( unsigned long nPixelCount = nPixels; nPixelCount ; nPixelCount-- )
 
         {
 
-          pDestPixel->rgbRed = (pPixels->red)/257;
+          pDestPixel->rgbRed = MagickCore::GetPixelRed(m_Image.constImage(),pPixels)/257;
 
-          pDestPixel->rgbGreen = (pPixels->green)/257;
+          pDestPixel->rgbGreen = MagickCore::GetPixelGreen(m_Image.constImage(),pPixels)/257;
 
-          pDestPixel->rgbBlue = (pPixels->blue)/257;
+          pDestPixel->rgbBlue = MagickCore::GetPixelBlue(m_Image.constImage(),pPixels)/257;
 
           pDestPixel->rgbReserved = 0;
 
           ++pDestPixel;
 
-          ++pPixels;
+          pPixels+=MagickCore::GetPixelChannels(m_Image.constImage());
 
         }
-
-#endif
-
 
 
       // Now copy the bitmap to device.
