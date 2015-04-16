@@ -1053,7 +1053,7 @@ void MagickImage::warninghandler(
 	const char* qualifier
 )
 {
-	char warning_text[ MaxTextExtent ];
+	char warning_text[ MagickPathExtent ];
 
 	if( !message )
 	{
@@ -1061,7 +1061,7 @@ void MagickImage::warninghandler(
 		return;
 	}
 
-	MagickCore::FormatLocaleString( warning_text, MaxTextExtent,
+	MagickCore::FormatLocaleString( warning_text, MagickPathExtent,
 		"warning %d: %.1024s%s%.1024s%s%s%.64s%s\n", warning, message,
 		qualifier ? " (" : "", qualifier ? qualifier : "",
 		qualifier ? ")" : "", errno ? " [" : "",
@@ -1075,7 +1075,7 @@ void MagickImage::errorhandler(
 	const char* qualifier
 )
 {
-	char error_text[ MaxTextExtent ];
+	char error_text[ MagickPathExtent ];
 
 	if( !message )
 	{
@@ -1083,7 +1083,7 @@ void MagickImage::errorhandler(
 		return;
 	}
 
-	MagickCore::FormatLocaleString( error_text, MaxTextExtent,
+	MagickCore::FormatLocaleString( error_text, MagickPathExtent,
 		"error %d: %.1024s%s%.1024s%s%s%.64s%s\n", warning, message,
 		qualifier ? " (" : "", qualifier ? qualifier : "",
 		qualifier ? ")" : "", errno ? " [" : "",
@@ -1097,7 +1097,7 @@ void MagickImage::fatalerrorhandler(
 	const char* qualifier
 )
 {
-	char fatalerror_text[ MaxTextExtent ];
+	char fatalerror_text[ MagickPathExtent ];
 
 	if( !message )
 	{
@@ -1105,7 +1105,7 @@ void MagickImage::fatalerrorhandler(
 		return;
 	}
 
-	MagickCore::FormatLocaleString( fatalerror_text, MaxTextExtent,
+	MagickCore::FormatLocaleString( fatalerror_text, MagickPathExtent,
 		"fatal error %d: %.1024s%s%.1024s%s%s%.64s%s", error,
 		(message ? message : "ERROR"),
 		qualifier ? " (" : "", qualifier ? qualifier : "", qualifier ? ")" : "",
@@ -1123,13 +1123,13 @@ void MagickImage::CheckAndReportError(
 	const char* program
 )
 {
-	char message_text[ MaxTextExtent ];
+	char message_text[ MagickPathExtent ];
 
 	if ( FAILED(hr) )
 	{
 		if( error.fullException )
 		{
-			MagickCore::FormatLocaleString( message_text, MaxTextExtent,
+			MagickCore::FormatLocaleString( message_text, MagickPathExtent,
 				"%s: 0x%08X: %.1024s", program, error.fullExceptionCode, error.translate_exception() );
 		}
 		else
@@ -1144,12 +1144,12 @@ void MagickImage::CheckAndReportError(
 			while( exceptionlist != (const MagickCore::ExceptionInfo*)NULL )
 			{
 				size_t len = strlen( message_text );
-				if( MaxTextExtent - len < 0 )
+				if( MagickPathExtent - len < 0 )
 				{
 					break;
 				}
 
-				MagickCore::FormatLocaleString( message_text + len, MaxTextExtent - len,
+				MagickCore::FormatLocaleString( message_text + len, MagickPathExtent - len,
 					"%s: %d: %.1024s: %.1024s\r\n",
 					program,
 					exceptionlist->severity,
@@ -1165,7 +1165,7 @@ void MagickImage::CheckAndReportError(
 
 			//ATLASSERT( FALSE );
 	#endif
-			CA2WEX<MaxTextExtent>wsMessageText( message_text );
+			CA2WEX<MagickPathExtent>wsMessageText( message_text );
 			Error( wsMessageText, __uuidof( IMagickImage ), hr );
 		}
 	}
@@ -1206,7 +1206,7 @@ HRESULT MagickImage::TestHarness(
 	char
 	* reason,
 	* description,
-	  message_text[ MaxTextExtent ];
+	  message_text[ MagickPathExtent ];
 
 	reason = "unknown";
 	description = "unknown";
@@ -1291,9 +1291,9 @@ HRESULT MagickImage::TestHarness(
 	if( FAILED( hr ) )
 	{
 		hr = MAKE_HRESULT( SEVERITY_ERROR, FACILITY_ITF, dwErrorBase + 1001 );
-		MagickCore::FormatLocaleString( message_text, MaxTextExtent,
+		MagickCore::FormatLocaleString( message_text, MagickPathExtent,
 			"convert: %d: %.1024s: %.1024s", exception->severity, reason, description );
-		CA2WEX<MaxTextExtent> str( message_text );
+		CA2WEX<MagickPathExtent> str( message_text );
 #ifdef _DEBUG
 
 //    ATLASSERT( FALSE );
