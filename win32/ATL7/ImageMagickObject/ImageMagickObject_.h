@@ -52,7 +52,7 @@ namespace MagickCore
 #include <MagickCore/semaphore.h>
 #include <MagickCore/nt-base.h>
 #include <MagickCore/log.h>
-#include <MagickCore/hashmap.h>
+#include <MagickCore/linked-list.h>
 //#undef _MAGICKDLL_
 //#undef _MAGICKLIB_
 #undef inline
