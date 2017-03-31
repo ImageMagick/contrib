@@ -69,7 +69,7 @@ public:
     {
       CT2AEX<MAX_PATH> app_path(m_szAppPath);
       (void)MagickCore::LogMagickEvent(MagickCore::ResourceEvent, GetMagickModule(),
-        "DLL Detach -  path: %s", app_path);
+        "DLL Detach -  path: %s", (const char *) app_path);
       MagickCore::MagickCoreTerminus();
 #ifdef _DEBUG
       if (_CrtDumpMemoryLeaks())
