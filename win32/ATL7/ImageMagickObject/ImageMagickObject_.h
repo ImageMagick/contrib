@@ -1,5 +1,5 @@
 /*
-	ImageMagickObject_.h
+  ImageMagickObject_.h
 */
 
 #pragma once
@@ -44,7 +44,7 @@ using namespace ATL;
 namespace MagickCore
 {
 #ifndef _VISUALC_
-	#define _VISUALC_
+  #define _VISUALC_
 #endif
 //#define _MAGICKDLL_
 //#define _MAGICKLIB_
