@@ -24,6 +24,7 @@
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS
 #define _ATL_ALL_WARNINGS
 #pragma warning(disable: 4103) // pragma pack
+#pragma warning(disable: 4467) // usage of ATL attributes is deprecated
 #define _WINSOCKAPI_
 #include <atlbase.h>
 #include <atlcom.h>
