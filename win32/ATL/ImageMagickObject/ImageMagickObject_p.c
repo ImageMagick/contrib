@@ -7,7 +7,7 @@
  /* File created by MIDL compiler version 6.00.0347 */
 /* at Sun Nov 10 17:50:54 2002
  */
-/* Compiler settings for \home\bfriesen\ImageMagick\contrib\win32\ATL\ImageMagickObject\ImageMagickObject.idl:
+/* Compiler settings for \home\cristy\ImageMagick\contrib\win32\ATL\ImageMagickObject\ImageMagickObject.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)
     protocol : dce , ms_ext, c_ext
     error checks: allocation ref bounds_check enum stub_data 

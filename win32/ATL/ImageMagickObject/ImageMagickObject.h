@@ -4,7 +4,7 @@
 /* File created by MIDL compiler version 5.01.0164 */
 /* at Mon Sep 02 14:48:18 2002
  */
-/* Compiler settings for C:\home\bfriesen\ImageMagick\contrib\win32\ATL\ImageMagickObject\ImageMagickObject.idl:
+/* Compiler settings for C:\home\cristy\ImageMagick\contrib\win32\ATL\ImageMagickObject\ImageMagickObject.idl:
     Oicf (OptLev=i2), W1, Zp8, env=Win32, ms_ext, c_ext
     error checks: allocation ref bounds_check enum stub_data 
 */
@@ -98,6 +98,10 @@ EXTERN_C const IID IID_IMagickImage;
         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE Remove( 
             /* [in] */ VARIANT varIndex) = 0;
         
+        virtual /* [vararg][helpstring][id] */ HRESULT STDMETHODCALLTYPE Magick( 
+            /* [out][in] */ SAFEARRAY __RPC_FAR * __RPC_FAR *pArrayVar,
+            /* [retval][out] */ VARIANT __RPC_FAR *pVar2) = 0;
+
         virtual /* [vararg][helpstring][id] */ HRESULT STDMETHODCALLTYPE Convert( 
             /* [out][in] */ SAFEARRAY __RPC_FAR * __RPC_FAR *pArrayVar,
             /* [retval][out] */ VARIANT __RPC_FAR *pVar2) = 0;

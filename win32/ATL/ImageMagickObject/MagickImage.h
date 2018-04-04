@@ -89,6 +89,7 @@ END_CONNECTION_POINT_MAP()
 
 // IMagickImage
 public:
+	STDMETHOD(Magick)(/*[in,out]*/ SAFEARRAY **pArrayVar, /*[out, retval]*/ VARIANT *pVar2);
 	STDMETHOD(Convert)(/*[in,out]*/ SAFEARRAY **pArrayVar, /*[out, retval]*/ VARIANT *pVar2);
 	STDMETHOD(Composite)(/*[in,out]*/ SAFEARRAY **pArrayVar, /*[out, retval]*/ VARIANT *pVar2);
 	STDMETHOD(Mogrify)(/*[in,out]*/ SAFEARRAY **pArrayVar, /*[out, retval]*/ VARIANT *pVar2);

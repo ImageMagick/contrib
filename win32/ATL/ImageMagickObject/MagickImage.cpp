@@ -600,6 +600,53 @@ static char *translate_exception(DWORD code)
   }
 }
 
+STDMETHODIMP CMagickImage::Magick(SAFEARRAY **pArrayVar, VARIANT *pVar)
+{
+  USES_CONVERSION;
+
+  HRESULT hr;
+
+  ExceptionInfo
+    exception;
+
+  char
+    *reason,
+    *description,
+    message_text[MaxTextExtent];
+
+  __try
+  {
+    EmptyArgs();
+    AddArgs(L"-magick");
+    GetExceptionInfo(&exception);
+    reason = "unknown";
+    description = "unknown";
+    hr = Perform(MagickImageCommand,pArrayVar,pVar,&exception);
+    if (FAILED(hr))
+    {
+      if (exception.reason)
+        reason = exception.reason;
+      if (exception.description)
+        description = exception.description;
+    }
+  }
+  __except(1)
+  {
+    hr = E_UNEXPECTED;
+    reason = "exception";
+    description = translate_exception(_exception_code());
+  }
+	if (FAILED(hr))
+    {
+      hr = MAKE_HRESULT(SEVERITY_ERROR,FACILITY_ITF,dwErrorBase+1001);
+      (void) FormatMagickString(message_text,MaxTextExtent,
+        "magick: %d: %.1024s: %.1024s",exception.severity,reason,description);
+      Error(A2W(message_text),IID_IMagickImage,hr);
+    }
+  DestroyExceptionInfo(&exception);
+  return hr;
+}
+
 STDMETHODIMP CMagickImage::Convert(SAFEARRAY **pArrayVar, VARIANT *pVar)
 {
   USES_CONVERSION;
